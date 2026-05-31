@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>新加坡泰餐 Top 10 🇹🇭</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    background: #f5f0eb;
+    color: #1a1a1a;
+    width: 1080px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #0d2818 0%, #1a4731 50%, #0d2818 100%);
+    padding: 50px 50px 30px;
+    text-align: center;
+    position: relative;
+  }
+  .hero h1 {
+    font-size: 46px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 6px;
+  }
+  .hero .sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 10px;
+    letter-spacing: 3px;
+  }
+  .hero .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.8);
+    padding: 5px 18px;
+    border-radius: 18px;
+    font-size: 13px;
+    margin-top: 14px;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 24px 45px 40px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    position: relative;
+  }
+
+  /* Nakhon Kitchen - photo card */
+  .card-photo {
+    height: 200px;
+    background-size: cover;
+    background-position: center top;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .card-photo .photo-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.4) 0%, transparent 50%);
+  }
+  .card-photo .photo-credit {
+    position: absolute; bottom: 8px; right: 10px;
+    font-size: 10px; color: rgba(255,255,255,0.6);
+  }
+
+  /* Info cards without photos */
+  .card-visual {
+    background: linear-gradient(135deg, #faf5ee, #f5ede3);
+    padding: 24px 20px 10px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-visual .deco-icon {
+    font-size: 48px;
+    opacity: 0.3;
+    position: absolute;
+    right: -5px;
+    bottom: -5px;
+  }
+
+  .rank-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 2;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 900;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .rank-badge-1 { background: linear-gradient(135deg, #f4d03f, #e6b90a); color: #1a1a1a; }
+  .rank-badge-2 { background: linear-gradient(135deg, #bdc3c7, #95a5a6); color: #1a1a1a; }
+  .rank-badge-3 { background: linear-gradient(135deg, #e6a35a, #c07a2e); color: #fff; }
+  .rank-badge-default { background: #333; color: #aaa; }
+
+  .info-area {
+    padding: 16px 18px 18px;
+  }
+  .info-area .name-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .info-area .name-row h3 {
+    font-size: 18px;
+    font-weight: 700;
+    flex: 1;
+    color: #1a1a1a;
+  }
+  .info-area .name-row .flag-badge { font-size: 18px; }
+
+  .info-area .tags {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+  .info-area .tags span {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+  .tag-price { background: #e0f5e9; color: #2d6a4f; }
+  .tag-michelin { background: #fff3d6; color: #b8860b; }
+  .tag-hot { background: #ffe8e8; color: #c0392b; }
+  .tag-collect { background: #e3f2fd; color: #1565c0; }
+  .tag-chain { background: #f3e5f5; color: #7b1fa2; }
+
+  .info-area .meta {
+    font-size: 12.5px;
+    color: #888;
+    margin-bottom: 5px;
+  }
+  .info-area .meta .addr { color: #999; }
+  .info-area .desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.55;
+  }
+  .info-area .link {
+    display: inline-block;
+    font-size: 11px;
+    color: #ff2442;
+    text-decoration: none;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  /* Featured review section */
+  .review-section {
+    padding: 0 45px 24px;
+  }
+  .review-box {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  }
+  .review-header {
+    background: linear-gradient(135deg, #1a4731, #2a5a3f);
+    padding: 22px 28px;
+    color: #fff;
+  }
+  .review-header h2 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .review-header .review-intro {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.65;
+  }
+  .review-photos {
+    display: flex;
+    gap: 12px;
+    padding: 16px 20px 0;
+    justify-content: center;
+    background: #faf7f3;
+  }
+  .review-photos img {
+    width: 220px;
+    height: 280px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  .review-body {
+    padding: 18px 24px 24px;
+  }
+  .review-body .tip {
+    font-size: 12.5px;
+    color: #888;
+    background: #f5f0eb;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .dish-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 16px;
+  }
+  .dish-item {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: #555;
+  }
+  .dish-item .emoji { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .dish-item .dish-name { font-weight: 700; color: #1a1a1a; }
+  .dish-item.not-rec .dish-name { color: #999; }
+  .dish-item.not-rec { opacity: 0.75; }
+  .review-summary {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed #e0d8cf;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.65;
+  }
+  .review-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .review-tags span {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    background: #e8f5e9;
+    color: #2d6a4f;
+    font-weight: 500;
+  }
+
+  .rec-section {
+    background: linear-gradient(135deg, #1e3a2a 0%, #2a5a3f 100%);
+    padding: 28px 45px;
+    border-top: 2px solid #3a6a4f;
+    border-bottom: 2px solid #3a6a4f;
+    text-align: center;
+  }
+  .rec-section .rec-title { font-size: 22px; color: #fff; font-weight: 700; margin-bottom: 8px; }
+  .rec-section .rec-text { font-size: 14px; color: #bbb; line-height: 1.8; max-width: 600px; margin: 0 auto; }
+
+  .orchard-section {
+    padding: 28px 45px 32px;
+    background: #fff;
+    border-top: 1px solid #e8e0d6;
+  }
+  .orchard-section h2 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1a4731;
+    margin-bottom: 6px;
+  }
+  .orchard-section .orchard-sub {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 18px;
+  }
+  .orchard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .orchard-item {
+    padding: 14px 16px;
+    background: #faf7f3;
+    border-radius: 10px;
+    border-left: 3px solid #2a5a3f;
+  }
+  .orchard-item h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+  .orchard-item .orchard-desc {
+    font-size: 12.5px;
+    color: #666;
+    line-height: 1.55;
+    margin-bottom: 6px;
+  }
+  .orchard-item .orchard-addr {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 4px;
+  }
+  .orchard-item .orchard-links a {
+    font-size: 11.5px;
+    color: #ff2442;
+    text-decoration: none;
+    margin-right: 12px;
+    font-weight: 500;
+  }
+  .orchard-item .orchard-links a:hover { text-decoration: underline; }
+
+  .footer {
+    text-align: center;
+    padding: 20px 45px;
+    background: #1a1a1a;
+    color: rgba(255,255,255,0.35);
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+  .footer .note { color: rgba(255,255,255,0.2); font-size: 10px; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🇹🇭 新加坡泰餐 Top 10</h1>
+  <div class="sub">小红书热门推荐餐厅合集</div>
+  <div class="badge">🔥 综合收藏·点赞·评论热度排序</div>
+</div>
+
+<div class="card-grid">
+
+  <!-- 1. Nakhon Kitchen -->
+  <div class="card">
+    <div class="rank-badge rank-badge-1">1</div>
+    <div class="card-visual">
+      <div style="font-size:42px; margin-bottom:4px;">🏪</div>
+      <div style="font-size:14px; font-weight:700; color:#1a1a1a;">永远都在排队</div>
+      <div class="deco-icon">🔥</div>
+    </div>
+    <div class="info-area">
+      <div class="name-row">
+        <h3>🥇 Nakhon Kitchen</h3>
+        <span class="flag-badge">🇹🇭</span>
+      </div>
+      <div class="tags">
+        <span class="tag-price">💰 人均 $10</span>
+        <span class="tag-hot">🔥 性价比之王</span>
+        <span class="tag-collect">📌 1207 收藏</span>
+      </div>
+      <div class="meta">人均 $10 - $15 · <span class="addr">📍 Holland Village, Sengkang, Northpoint</span></div>
+      <div class="desc">位于荷兰村，永远都在排队不是没有原因！食阁的价格、餐厅的菜色，全岛性价比最高的泰国餐之一。泰奶 $3、炸鸡翅 $4 必点。</div>
+      <a class="link" href="https://www.xiaohongshu.com/search_result?keyword=Nakhon+Kitchen+新加坡" target="_blank">🔍 小红书看笔记 →</a>
+    </div>
+  </div>
+
+  <!-- 2. Un-Yang-Kor-Dai - WITH REAL PHOTO -->
+  <div class="card">
+    <div class="rank-badge rank-badge-2">2</div>
+    <div class="card-photo">
+      <img src="images/un_yang_kor_dai_1.png" alt="Un-Yang-Kor-Dai 实拍">
+      <div class="photo-overlay"></div>
+    </div>
+    <div class="info-area">
+      <div class="name-row">
+        <h3>🥈 Un-Yang-Kor-Dai</h3>
+        <span class="flag-badge">🇸🇬</span>
+      </div>
+      <div class="tags">
+        <span class="tag-michelin">⭐ 米其林推荐</span>
+        <span class="tag-hot">🔥 本地人最爱</span>
+        <span class="tag-price">💰 两人 $200+</span>
+      </div>
+      <div class="meta">11:30 开餐 · 需提前一周预约 · <span class="addr">📍 57 South Bridge Rd, 058688</span></div>
+      <div class="desc">新加坡本地人都爱去的店，在香港街旁边。手写菜单勾选点菜，食材新鲜干净，比 Soi 更推荐！</div>
+      <a class="link" href="https://www.xiaohongshu.com/search_result?keyword=Un-Yang-Kor-Dai+新加坡" target="_blank">🔍 小红书看笔记 →</a>
+    </div>
+  </div>
+
+  <!-- 3. Soi Thai Kitchen -->
+  <div class="card">
+    <div class="rank-badge rank-badge-3">3</div>
+    <div class="card-photo">
+      <img src="images/soi_thai_kitchen.png" alt="Soi Thai Kitchen 实拍">
+      <div class="photo-overlay"></div>
+    </div>
+    <div class="info-area">
+      <div class="name-row">
+        <h3>🥉 Soi Thai Kitchen</h3>
+        <span class="flag-badge">🇹🇭</span>
+      </div>
+      <div class="tags">
+        <span class="tag-price">💰 人均 $25</span>
+        <span class="tag-chain">🏪 全岛 5 家</span>
+        <span class="tag-collect">📌 367 收藏</span>
+      </div>
+      <div class="meta">人均 $25 左右 · <span class="addr">📍 大巴窑 MRT 对面、Jurong West 等</span></div>
+      <div class="desc">苍蝇馆子但平价好吃！红色冬阴功必点，空心菜、凉拌芒果丝、泰式 Sukiyaki 面也推荐。</div>
+      <a class="link" href="https://www.xiaohongshu.com/search_result?keyword=Soi+Thai+Kitchen+新加坡" target="_blank">🔍 小红书看笔记 →</a>
+    </div>
+  </div>
+
+  <!-- 4. Kra Pow Thai -->
+  <div class="card">
+    <div class="rank-badge rank-badge-default">4</div>
+    <div class="card-photo">
+      <img src="images/kra_pow_thai.png" alt="Kra Pow Thai 实拍">
+      <div class="photo-overlay"></div>
+    </div>
+    <div class="info-area">
+      <div class="name-row">
+        <h3>Kra Pow Thai</h3>
+        <span class="flag-badge">🇹🇭</span>
+      </div>
+      <div class="tags">
+        <span class="tag-price">💰 约 $15</span>
+        <span class="tag-hot">🔥 一人食友好</span>
+      </div>
+      <div class="meta">打抛猪饭 + 泰奶约 $15 · <span class="addr">📍 14 Scotts Rd, Far East Plaza #03-26</span></div>
+      <div class="desc">打抛猪饭 + 泰奶约 $15 搞定！肉量足、蛋完美、辣得过瘾，一个人吃也超满足。</div>
+      <a class="link" href="https://www.xiaohongshu.com/search_result?keyword=Kra+Pow+Thai+新加坡" target="_blank">🔍 小红书看笔记 →</a>
+    </div>
+  </div>
+
+  <!-- 5. Yhingthai Palace -->
+  <div class="card">
+    <div class="rank-badge rank-badge-default">5</div>
+    <div class="card-photo">
+      <img src="images/yhingthai_palace.png" alt="Yhingthai Palace 实拍">
+      <div class="photo-overlay"></div>
+    </div>
+    <div class="info-area">
+      <div class="name-row">
+        <h3>Yhingthai Palace</h3>
+        <span class="flag-badge">🇹🇭</span>
+      </div>
+      <div class="tags">
+        <span class="tag-michelin">⭐ 米其林 7 年</span>
+        <span class="tag-collect">📌 711 收藏</span>
+        <span class="tag-price">💰 三人 $200</span>
+      </div>
+      <div class="meta">三人约 $200 · <span class="addr">📍 36 Purvis St, Singapore</span></div>
+      <div class="desc">连续 7 年米其林！泰国人都称赞的泰餐。冬阴功、绿咖喱、炸鸡翅、凤梨炒饭必点。</div>
+      <a class="link" href="https://www.xiaohongshu.com/search_result?keyword=Yhingthai+Palace+新加坡" target="_blank">🔍 小红书看笔记 →</a>
+    </div>
+  </div>
+
+  <!-- 6. Sanook Kitchen -->
+  <div class="card">
+    <div class="rank-badge rank-badge-default">6</div>
+    <div class="card-photo">
+      <img src="images/sanook_kitchen.png" alt="Sanook Kitchen 实拍">
+      <div class="photo-overlay"></div>
+    </div>
+    <div class="info-area">
+      <div class="name-row">
+        <h3>Sanook Kitchen</h3>
+        <span class="flag-badge">🇹🇭</span>
+      </div>
+      <div class="tags">
+        <span class="tag-price">💰 人均 $12</span>
+        <span class="tag-chain">🏪 荷兰村</span>
+      </div>
+      <div class="meta">人均 $10 - $15 · <span class="addr">📍 16 Lor Mambong, Holland Village</span></div>
+      <div class="desc">份量大！青柠蒸鲈鱼风味层次丰富，凤梨虾炒饭粒粒分明，牛肉炒芥兰肉量惊人。</div>
+      <a class="link" href="https://www.xiaohongshu.com/search_result?keyword=Sanook+Kitchen+新加坡" target="_blank">🔍 小红书看笔记 →</a>
+    </div>
+  </div>
+
+  <!-- 7. TOMYUM MAMA -->
+  <div class="card">
+    <div class="rank-badge rank-badge-default">7</div>
+    <div class="card-photo">
+      <img src="images/tomyum_mama.png" alt="TOMYUM MAMA 实拍">
+      <div class="photo-overlay"></div>
+    </div>
+    <div class="info-area">
+      <div class="name-row">
+        <h3>TOMYUM MAMA</h3>
+        <span class="flag-badge">🇹🇭</span>
+      </div>
+      <div class="tags">
+        <span class="tag-price">💰 人均 $15</span>
+        <span class="tag-hot">🔥 海鲜冬阴功面</span>
+      </div>
+      <div class="meta">人均 $15 - $20 · <span class="addr">📍 244P Upper Thomson Rd, 574369</span></div>
+      <div class="desc">海鲜多到捞不完的冬阴功砂锅 Mama 面！自选辣度，MAMA 泡面吸满酸辣汤底。</div>
+      <a class="link" href="https://www.xiaohongshu.com/search_result?keyword=TOMYUM+MAMA+新加坡" target="_blank">🔍 小红书看笔记 →</a>
+    </div>
+  </div>
+
+  <!-- 8. Basil King -->
+  <div class="card">
+    <div class="rank-badge rank-badge-default">8</div>
+    <div class="card-photo">
+      <img src="images/basil_king.png" alt="Basil King 实拍">
+      <div class="photo-overlay"></div>
+    </div>
+    <div class="info-area">
+      <div class="name-row">
+        <h3>Basil King</h3>
+        <span class="flag-badge">🇹🇭</span>
+      </div>
+      <div class="tags">
+        <span class="tag-price">💰 $6.9 起</span>
+        <span class="tag-hot">🌶️ 1-5 星辣度</span>
+        <span class="tag-chain">🏪 义顺忠邦</span>
+      </div>
+      <div class="meta">打抛饭 $6.9 - $11.9 · <span class="addr">📍 义顺忠邦食阁</span></div>
+      <div class="desc">泰国 Phed Mark 的本地版！5 分钟吃到大排档打抛饭，可选 1-4 颗蛋，猪/鸡/虾/牛都有。</div>
+      <a class="link" href="https://www.xiaohongshu.com/search_result?keyword=Basil+King+新加坡+打抛饭" target="_blank">🔍 小红书看笔记 →</a>
+    </div>
+  </div>
+
+  <!-- 9. Fi Woodfire Thai -->
+  <div class="card">
+    <div class="rank-badge rank-badge-default">9</div>
+    <div class="card-photo">
+      <img src="images/fi_woodfire.png" alt="Fi Woodfire Thai 实拍">
+      <div class="photo-overlay"></div>
+    </div>
+    <div class="info-area">
+      <div class="name-row">
+        <h3>Fi Woodfire Thai</h3>
+        <span class="flag-badge">🇹🇭</span>
+      </div>
+      <div class="tags">
+        <span class="tag-price">💰 人均 $35</span>
+        <span class="tag-hot">🔥 炭火新派</span>
+      </div>
+      <div class="meta">人均 $30 - $50 · <span class="addr">📍 1 Scotts Rd, #03-14</span></div>
+      <div class="desc">炭火泰式融合菜！招牌 Moo Ping 猪肋排 $48、法式烤鸡、醉面锅气十足，抹茶泰奶必试。</div>
+      <a class="link" href="https://www.xiaohongshu.com/search_result?keyword=Fi+Woodfire+Thai+新加坡" target="_blank">🔍 小红书看笔记 →</a>
+    </div>
+  </div>
+
+  <!-- 10. Phed Mark -->
+  <div class="card">
+    <div class="rank-badge rank-badge-default">10</div>
+    <div class="card-visual">
+      <div style="font-size:42px; margin-bottom:4px;">🍳</div>
+      <div style="font-size:14px; font-weight:700; color:#1a1a1a;">网红打抛饭</div>
+      <div class="deco-icon">🌶️</div>
+    </div>
+    <div class="info-area">
+      <div class="name-row">
+        <h3>Phed Mark</h3>
+        <span class="flag-badge">🇹🇭</span>
+      </div>
+      <div class="tags">
+        <span class="tag-price">💰 人均 $10</span>
+        <span class="tag-hot">🌶️🌶️🌶️ 自选辣度</span>
+      </div>
+      <div class="meta">人均 $10 - $15 · <span class="addr">📍 多分店</span></div>
+      <div class="desc">网红打抛饭专门店！5 级辣度任选，鸭蛋比鸡蛋香浓，排队正常但翻桌快。</div>
+      <a class="link" href="https://www.xiaohongshu.com/search_result?keyword=Phed+Mark+新加坡" target="_blank">🔍 小红书看笔记 →</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- Un-Yang-Kor-Dai 探店笔记 -->
+<div class="review-section">
+  <div class="review-box">
+    <div class="review-header">
+      <h2>🇸🇬 探店笔记 · Un-Yang-Kor-Dai</h2>
+      <div class="review-intro">
+        新加坡本地人都喜欢会去的店，在香港街旁边。菜单是英文跟泰文的，上午 11 点半开餐，进店之后每张桌子上会有一张手写的菜单，可以勾选自己想要吃的。我们两个人点的有点多，大概 200 多新，价格还可以。
+      </div>
+    </div>
+    <div class="review-photos">
+      <img src="images/un_yang_kor_dai_1.png" alt="Un-Yang-Kor-Dai 第一桌">
+      <img src="images/un_yang_kor_dai_2.png" alt="Un-Yang-Kor-Dai 第二桌">
+    </div>
+    <div class="review-body">
+      <div class="tip">📌 记得至少要提前一周预约 · 地址：57 桥南路，邮编 058688</div>
+      <div class="dish-list">
+        <div class="dish-item">
+          <span class="emoji">🥭</span>
+          <div><span class="dish-name">芒果糯米饭</span> — 芒果特别软糯，先用糯米饭蘸脆脆的配搭再跟芒果一起吃，很好入口一点儿也不腻。</div>
+        </div>
+        <div class="dish-item">
+          <span class="emoji">🦐</span>
+          <div><span class="dish-name">炸虾饼</span> — 很厚实不油，口感 Q 弹，搭配芒果洋葱酱味道非常合适。</div>
+        </div>
+        <div class="dish-item">
+          <span class="emoji">🍲</span>
+          <div><span class="dish-name">冬阴功汤</span> — 可选不同汤底，我们选 coconut 浓郁感，邻桌清汤更爽口清淡。</div>
+        </div>
+        <div class="dish-item">
+          <span class="emoji">🥗</span>
+          <div><span class="dish-name">青木瓜沙拉</span> — 我的最爱！放虾米和花生，酸酸辣辣非常好吃。</div>
+        </div>
+        <div class="dish-item">
+          <span class="emoji">🍗</span>
+          <div><span class="dish-name">烤鸡</span> — 外焦里嫩没有肉腥，酱一般，空口吃更好，可点半只或整只。</div>
+        </div>
+        <div class="dish-item">
+          <span class="emoji">🧋</span>
+          <div><span class="dish-name">泰奶</span> — 特别好喝，加冰后不腻，对象连喝两大杯！</div>
+        </div>
+        <div class="dish-item not-rec">
+          <span class="emoji">🥬</span>
+          <div><span class="dish-name">炒空心菜</span> — 不太推荐，酱的味道掩盖了空心菜的清香。</div>
+        </div>
+        <div class="dish-item not-rec">
+          <span class="emoji">🥩</span>
+          <div><span class="dish-name">牛排</span> — 不太建议，七分熟黑胡椒味太突出，肉质一般。</div>
+        </div>
+        <div class="dish-item not-rec">
+          <span class="emoji">🐟</span>
+          <div><span class="dish-name">青柠檬烤鲈鱼</span> — 鱼肉偏老，酸辣感不如 Soi，可以不尝试。</div>
+        </div>
+      </div>
+      <div class="review-summary">
+        整体食材材质新鲜干净。跟 Soi 对比的话，还是更推荐这一家 —— 记得提前一周预约哦！
+      </div>
+      <div class="review-tags">
+        <span>#泰国菜</span>
+        <span>#新加坡</span>
+        <span>#新加坡旅游</span>
+        <span>#UnYangKorDai</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="rec-section">
+  <div class="rec-title">💝 约会推荐</div>
+  <div class="rec-text">
+    带 <span style="color:#ffb6d3; font-weight:600;">Phetcharin</span> 去吃的话，推荐
+    <span style="color:#7dcea0; font-weight:600;">Soi Thai Kitchen</span>（平价连锁）或
+    <span style="color:#7dcea0; font-weight:600;">Nakhon Kitchen</span>（性价比之王），
+    想约会就去 <span style="color:#f4d03f; font-weight:600;">Un-Yang-Kor-Dai</span> 或
+    <span style="color:#f4d03f; font-weight:600;">Yhingthai Palace</span> 🇹🇭❤️
+  </div>
+</div>
+
+<div class="orchard-section">
+  <h2>🌴 乌节路周边 · 5 家泰国餐厅文字推荐</h2>
+  <div class="orchard-sub">逛完乌节路想吃点泰餐，这几家都在 Orchard / Scotts 一带，步行或地铁都能到</div>
+  <div class="orchard-list">
+
+    <div class="orchard-item">
+      <h4>1. Fi Woodfire Thai</h4>
+      <div class="orchard-desc">炭火泰式融合菜，环境时尚适合约会。招牌 Moo Ping 猪肋排、法式烤鸡、醉面、抹茶泰奶。</div>
+      <div class="orchard-addr">📍 1 Scotts Rd, #03-14, Singapore 228208（靠近 Orchard MRT）</div>
+      <div class="orchard-links">
+        <a href="https://maps.google.com/?q=Fi+Woodfire+Thai+1+Scotts+Road+Singapore" target="_blank">Google Maps →</a>
+        <a href="https://www.xiaohongshu.com/search_result?keyword=Fi+Woodfire+Thai+新加坡" target="_blank">小红书 →</a>
+      </div>
+    </div>
+
+    <div class="orchard-item">
+      <h4>2. PLU Singapore</h4>
+      <div class="orchard-desc">曼谷米其林 Bib Gourmand 分店，Goodwood Park Hotel 里。正宗泰北风味，适合想认真吃一顿泰餐的日子。</div>
+      <div class="orchard-addr">📍 22 Scotts Rd, Goodwood Park Hotel, Singapore 228221</div>
+      <div class="orchard-links">
+        <a href="https://maps.google.com/?q=PLU+Singapore+22+Scotts+Road" target="_blank">Google Maps →</a>
+        <a href="https://www.chope.co/singapore-restaurants/restaurant/plu-singapore" target="_blank">Chope 订位 →</a>
+        <a href="https://www.xiaohongshu.com/search_result?keyword=PLU+Singapore+泰国菜" target="_blank">小红书 →</a>
+      </div>
+    </div>
+
+    <div class="orchard-item">
+      <h4>3. Kra Pow Thai Restaurant</h4>
+      <div class="orchard-desc">Far East Plaza 里的打抛饭专门店，打抛猪 + 泰奶约 $15，一人食或快速午餐都很合适。</div>
+      <div class="orchard-addr">📍 14 Scotts Rd, Far East Plaza #03-26/27, Singapore 228213</div>
+      <div class="orchard-links">
+        <a href="https://maps.google.com/?q=Kra+Pow+Thai+Far+East+Plaza+Singapore" target="_blank">Google Maps →</a>
+        <a href="https://www.xiaohongshu.com/search_result?keyword=Kra+Pow+Thai+新加坡" target="_blank">小红书 →</a>
+      </div>
+    </div>
+
+    <div class="orchard-item">
+      <h4>4. Sanook Kitchen（ION Orchard）</h4>
+      <div class="orchard-desc">ION 地下 B3 的泰餐连锁，逛街顺便吃很方便。冬阴功、九层塔炒牛肉、泰式 BBQ 海鲜都有。</div>
+      <div class="orchard-addr">📍 2 Orchard Turn, ION Orchard #B3-19, Singapore 238801</div>
+      <div class="orchard-links">
+        <a href="https://maps.google.com/?q=Sanook+Kitchen+ION+Orchard" target="_blank">Google Maps →</a>
+        <a href="https://www.xiaohongshu.com/search_result?keyword=Sanook+Kitchen+ION+Orchard" target="_blank">小红书 →</a>
+      </div>
+    </div>
+
+    <div class="orchard-item">
+      <h4>5. Soi 47 Thai Food</h4>
+      <div class="orchard-desc">Orchard Central 4 楼平价泰餐，Somerset MRT 步行约 3 分钟。菜色多、上菜快，适合朋友聚餐。</div>
+      <div class="orchard-addr">📍 181 Orchard Rd, Orchard Central #04-08, Singapore 238896</div>
+      <div class="orchard-links">
+        <a href="https://maps.google.com/?q=Soi+47+Thai+Food+Orchard+Central" target="_blank">Google Maps →</a>
+        <a href="https://www.xiaohongshu.com/search_result?keyword=Soi+47+Thai+Orchard" target="_blank">小红书 →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="orchard-section" style="background:#faf7f3;">
+  <h2>🇹🇭 新加坡泰餐 Top 10 · 文字版整理</h2>
+  <div class="orchard-sub">综合小红书热度排序，方便复制分享或快速查阅</div>
+  <div class="orchard-list">
+
+    <div class="orchard-item">
+      <h4>🥇 1. Nakhon Kitchen</h4>
+      <div class="orchard-desc">全岛性价比之王，永远都在排队。食阁价格、餐厅菜色，泰奶 $3、炸鸡翅 $4 必点。</div>
+      <div class="orchard-addr">📍 Holland Village · Sengkang · Northpoint 等多分店 · 人均 $10–15</div>
+      <div class="orchard-links">
+        <a href="https://maps.google.com/?q=Nakhon+Kitchen+Holland+Village+Singapore" target="_blank">Google Maps →</a>
+        <a href="https://www.xiaohongshu.com/search_result?keyword=Nakhon+Kitchen+新加坡" target="_blank">小红书 →</a>
+      </div>
+    </div>
+
+    <div class="orchard-item">
+      <h4>🥈 2. Un-Yang-Kor-Dai</h4>
+      <div class="orchard-desc">米其林推荐，本地人最爱。手写菜单勾选点菜，芒果糯米饭、青木瓜沙拉、冬阴功必试，需提前一周预约。</div>
+      <div class="orchard-addr">📍 57 South Bridge Rd, Singapore 058688 · 11:30 开餐 · 两人约 $200+</div>
+      <div class="orchard-links">
+        <a href="https://maps.google.com/?q=Un-Yang-Kor-Dai+57+South+Bridge+Road" target="_blank">Google Maps →</a>
+        <a href="https://www.xiaohongshu.com/search_result?keyword=Un-Yang-Kor-Dai+新加坡" target="_blank">小红书 →</a>
+      </div>
+    </div>
+
+    <div class="orchard-item">
+      <h4>🥉 3. Soi Thai Kitchen</h4>
+      <div class="orchard-desc">苍蝇馆子但平价好吃，红色冬阴功必点，空心菜、凉拌芒果丝、泰式 Sukiyaki 面也推荐。</div>
+      <div class="orchard-addr">📍 大巴窑 MRT 对面 · Jurong West 502 Ave 1 等全岛 5 家 · 人均约 $25</div>
+      <div class="orchard-links">
+        <a href="https://maps.google.com/?q=Soi+Thai+Kitchen+Singapore" target="_blank">Google Maps →</a>
+        <a href="https://www.xiaohongshu.com/search_result?keyword=Soi+Thai+Kitchen+新加坡" target="_blank">小红书 →</a>
+      </div>
+    </div>
+
+    <div class="orchard-item">
+      <h4>4. Kra Pow Thai</h4>
+      <div class="orchard-desc">打抛猪饭 + 泰奶约 $15 搞定，肉量足、蛋完美，一人食超满足。</div>
+      <div class="orchard-addr">📍 14 Scotts Rd, Far East Plaza #03-26/27, Singapore 228213</div>
+      <div class="orchard-links">
+        <a href="https://maps.google.com/?q=Kra+Pow+Thai+Far+East+Plaza" target="_blank">Google Maps →</a>
+        <a href="https://www.xiaohongshu.com/search_result?keyword=Kra+Pow+Thai+新加坡" target="_blank">小红书 →</a>
+      </div>
+    </div>
+
+    <div class="orchard-item">
+      <h4>5. Yhingthai Palace</h4>
+      <div class="orchard-desc">连续 7 年米其林，泰国人都称赞。冬阴功、绿咖喱、炸鸡翅、凤梨炒饭必点，适合约会。</div>
+      <div class="orchard-addr">📍 36 Purvis St, Singapore 188613 · 三人约 $200</div>
+      <div class="orchard-links">
+        <a href="https://maps.google.com/?q=Yhingthai+Palace+36+Purvis+Street" target="_blank">Google Maps →</a>
+        <a href="https://www.xiaohongshu.com/search_result?keyword=Yhingthai+Palace+新加坡" target="_blank">小红书 →</a>
+      </div>
+    </div>
+
+    <div class="orchard-item">
+      <h4>6. Sanook Kitchen</h4>
+      <div class="orchard-desc">份量大，青柠蒸鲈鱼风味层次丰富，凤梨虾炒饭粒粒分明，牛肉炒芥兰肉量惊人。</div>
+      <div class="orchard-addr">📍 16 Lor Mambong, Holland Village · ION Orchard #B3-19 等 · 人均 $10–15</div>
+      <div class="orchard-links">
+        <a href="https://maps.google.com/?q=Sanook+Kitchen+Holland+Village" target="_blank">Google Maps →</a>
+        <a href="https://www.xiaohongshu.com/search_result?keyword=Sanook+Kitchen+新加坡" target="_blank">小红书 →</a>
+      </div>
+    </div>
+
+    <div class="orchard-item">
+      <h4>7. TOMYUM MAMA</h4>
+      <div class="orchard-desc">海鲜多到捞不完的冬阴功砂锅 Mama 面，自选辣度，MAMA 泡面吸满酸辣汤底。</div>
+      <div class="orchard-addr">📍 244P Upper Thomson Rd, Singapore 574369 · 人均 $15–20</div>
+      <div class="orchard-links">
+        <a href="https://maps.google.com/?q=TOMYUM+MAMA+Upper+Thomson" target="_blank">Google Maps →</a>
+        <a href="https://www.xiaohongshu.com/search_result?keyword=TOMYUM+MAMA+新加坡" target="_blank">小红书 →</a>
+      </div>
+    </div>
+
+    <div class="orchard-item">
+      <h4>8. Basil King</h4>
+      <div class="orchard-desc">泰国 Phed Mark 的本地版，5 分钟吃到大排档打抛饭。猪/鸡/虾/牛可选，1–4 颗蛋、1–5 星辣度。</div>
+      <div class="orchard-addr">📍 义顺忠邦食阁 · 打抛饭 $6.9 起</div>
+      <div class="orchard-links">
+        <a href="https://maps.google.com/?q=Basil+King+Yishun+Chong+Pang" target="_blank">Google Maps →</a>
+        <a href="https://www.xiaohongshu.com/search_result?keyword=Basil+King+新加坡+打抛饭" target="_blank">小红书 →</a>
+      </div>
+    </div>
+
+    <div class="orchard-item">
+      <h4>9. Fi Woodfire Thai</h4>
+      <div class="orchard-desc">炭火泰式融合菜，Moo Ping 猪肋排、法式烤鸡、醉面、抹茶泰奶，环境适合约会打卡。</div>
+      <div class="orchard-addr">📍 1 Scotts Rd, #03-14, Singapore 228208 · 人均 $30–50</div>
+      <div class="orchard-links">
+        <a href="https://maps.google.com/?q=Fi+Woodfire+Thai+Scotts+Road" target="_blank">Google Maps →</a>
+        <a href="https://www.xiaohongshu.com/search_result?keyword=Fi+Woodfire+Thai+新加坡" target="_blank">小红书 →</a>
+      </div>
+    </div>
+
+    <div class="orchard-item">
+      <h4>10. Phed Mark</h4>
+      <div class="orchard-desc">网红打抛饭专门店，5 级辣度任选，鸭蛋比鸡蛋香浓，排队正常但翻桌快。</div>
+      <div class="orchard-addr">📍 全岛多分店 · 人均 $10–15</div>
+      <div class="orchard-links">
+        <a href="https://maps.google.com/?q=Phed+Mark+Singapore" target="_blank">Google Maps →</a>
+        <a href="https://www.xiaohongshu.com/search_result?keyword=Phed+Mark+新加坡" target="_blank">小红书 →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  🇹🇭 新加坡泰餐 Top 10 · 数据综合小红书热门笔记整理
+  <div class="note">图片来源：小红书用户实拍 · 信息仅供参考</div>
+</div>
+
+</body>
+</html>
